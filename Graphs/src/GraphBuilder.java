@@ -14,8 +14,6 @@ class Graph {
 	// Remove the node with a given name from the the graph network if it exists.
 	void removeNode (String name) {
 		Node junk = getNode(name);
-		System.out.println("...Removing: " + name + "...");
-		if(junk != null) System.out.println("--->Successfully removing: " + name);
 		masterList.remove(junk);
 	}
 	
@@ -25,7 +23,7 @@ class Graph {
 		
 		// Loop through the masterList to find the node
 		for(Node iter: masterList) {
-			if(iter.name == name) return iter;
+			if(iter.name.equals(name)) return iter;
 		}
 		
 		// Return null if object with given name does not exist
@@ -38,19 +36,23 @@ class Graph {
 		Node a = getNode(node1);
 		Node b = getNode(node2);
 		
-		if(!hasEdge(node1, node2)) {
-			if(a != null && b != null) {
-			Node ab = new Node(node1 + "-"+ node2);
-			masterList.add(ab);
+		if(a != null && b != null) {
+			if(!hasEdge(node1, node2)) {
+				addNode(node1 + "-" + node2);
 			}
 		}
 	}
 	
 	// Returns true if edge exist and false if otherwise
 	boolean hasEdge(String node1, String node2) {
-		String name = node1 + "-" + node2;
-		Node check = getNode(name);
-		if(check == null) return false;
+		// Check for node1-node2 and node2-node1. Consider both the same
+		String name1 = node1 + "-" + node2;
+		String name2 = node2 + "-" + node1;
+		Node check1 = getNode(name1);
+		Node check2 = getNode(name2);
+		
+		// Return true if neither exist
+		if(check1 == null && check2 == null) return false;
 		return true;
 	}
 		
@@ -76,31 +78,24 @@ class Node {
 	
 }
 
-// Any additional classes here
-
-class Edge {
-	String connect;
-		
-	public Edge(String nodeA, String nodeB) {
-		this.connect = nodeA + nodeB;
-	}
-}
 
 public class GraphBuilder {
     public static void main(String[] args){
-        // Your code here
+        // Create a Graph
     	Graph test = new Graph();
+    	
+    	// Random test cases
     	test.addNode("n1");
     	test.addNode("n2");
-    	test.removeNode("n1");
+    	test.removeNode("n3");
     	test.addEdge("n1", "n2");
     	test.addEdge("n1", "n3");
     	test.hasEdge("n1", "n2");
     	test.addNode("n3");
+    	test.addEdge("n3", "n1");
     	test.addEdge("n1", "n3");
     	test.addEdge("n2", "n3");
-    	test.addEdge("n2", "n3");
-    	test.removeEdge("n2", "n3");
+    	test.removeEdge("n4", "n3");
     	test.printStructure();
     	
     }

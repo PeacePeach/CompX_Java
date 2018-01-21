@@ -8,8 +8,6 @@ public class ZooBuilder {
 		Animal myAnimal3 = new Elephant();
 		Animal myAnimal4 = new Panda("Mei Shiang", 14);
 		Animal myAnimal5 = new Elephant("Jumbo", 5);
-		Animal myAnimal6 = new Lion();
-		Lion myAnimal7 = new Lion("Scar", 12);
 		
 		// Add all the animals in the zoo
 		myZoo.addAnimal(myAnimal1);
@@ -19,11 +17,7 @@ public class ZooBuilder {
 		myZoo.addAnimal(myAnimal5);
 		
 		myZoo.printAllInfo();
-		myAnimal6.printInfo();
-		myAnimal7.printInfo();
-		
-		// Testing polymorphism of method
-		
+				
 	}
 }
 
@@ -77,21 +71,3 @@ class Elephant extends Animal{
 	
 	
 }
-
-class Lion extends Animal{
-    // Default panda constructor
-	Lion() {
-		super("Simba", "Lion", 1);
-	}
-	
-	//Alternate panda constructor
-	Lion(String name, int age) {
-		super(name, "Lion", age);
-	}
-	
-	 public void printInfo() {
-	    	System.out.println("Roar!!!");
-	    }
-	
-}
-

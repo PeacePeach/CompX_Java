@@ -36,6 +36,7 @@ class Graph {
 		Node a = getNode(node1);
 		Node b = getNode(node2);
 		
+		// Edge will be stored like a node
 		if(a != null && b != null) {
 			if(!hasEdge(node1, node2)) {
 				addNode(node1 + "-" + node2);
